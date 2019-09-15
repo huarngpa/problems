@@ -1,2 +1,6 @@
 # java
 *.class
+
+# IDE
+.metals
+target
