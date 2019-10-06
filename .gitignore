@@ -4,3 +4,4 @@
 # IDE
 .metals
 target
+.vscode
