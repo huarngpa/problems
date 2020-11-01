@@ -16,10 +16,10 @@ class MinHeapSolution {
     }
 
     public List<Integer> buildHeap(List<Integer> array) {
-      for (int i = array.size() - 1; i >= 0; i--) {
-        siftUp(i, array);
+      for (int e : array) {
+        insert(e);
       }
-      return array;
+      return heap;
     }
 
     private int parent(int i) {
@@ -41,20 +41,21 @@ class MinHeapSolution {
     }
 
     public void siftDown(int currentIdx, int endIdx, List<Integer> heap) {
-      int min;
-      int l = left(currentIdx);
-      int r = right(currentIdx);
-      if (l < endIdx && heap.get(l) < heap.get(currentIdx)) {
-        min = l;
-      } else {
-        min = currentIdx;
+      if (currentIdx >= endIdx) {
+        return;
       }
-      if (r < endIdx && heap.get(r) < heap.get(currentIdx)) {
-        min = r;
+      int minIdx = currentIdx;
+      int leftIdx = left(currentIdx);
+      int rightIdx = right(currentIdx);
+      if (leftIdx < endIdx && heap.get(leftIdx) < heap.get(minIdx)) {
+        minIdx = leftIdx;
       }
-      if (min != currentIdx) {
-        swap(min, currentIdx, heap);
-        siftDown(min, endIdx, heap);
+      if (rightIdx < endIdx && heap.get(rightIdx) < heap.get(minIdx)) {
+        minIdx = rightIdx;
+      }
+      if (minIdx != currentIdx) {
+        swap(minIdx, currentIdx, heap);
+        siftDown(minIdx, endIdx, heap);
       }
     }
 
@@ -82,6 +83,21 @@ class MinHeapSolution {
       heap.add(value);
       siftUp(heap.size() - 1, heap);
     }
+
+    public boolean hasHeapProperties() {
+      int size = heap.size();
+      for (int i = 0; i < size; i++) {
+        int l = left(i);
+        int r = right(i);
+        if (l < size && heap.get(l) < heap.get(i)) {
+          return false;
+        }
+        if (r < size && heap.get(r) < heap.get(i)) {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 
   public static void main(String[] args) {
@@ -93,7 +109,9 @@ class MinHeapSolution {
     System.out.println(array);
     MinHeap heap = new MinHeap(array);
     System.out.println(heap);
+    System.out.println("Has heap properties: " + heap.hasHeapProperties());
     heap.remove();
     System.out.println(heap);
+    System.out.println("Has heap properties: " + heap.hasHeapProperties());
   }
 }
