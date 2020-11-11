@@ -40,11 +40,11 @@ public class JobSchedulingSolution {
   }
 
   public static void main(String[] args) {
-    int[] input1 = new int[]{6,5,4,3,2,1};
+    int[] input1 = new int[] { 6, 5, 4, 3, 2, 1 };
     int d1 = 2;
     System.out.println(minDifficulty(input1, d1));
 
-    int[] input2 = new int[]{7,1,7,1,7,1};
+    int[] input2 = new int[] { 7, 1, 7, 1, 7, 1 };
     int d2 = 3;
     System.out.println(minDifficulty(input2, d2));
   }
