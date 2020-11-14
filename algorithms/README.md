@@ -35,3 +35,26 @@ DFS-Visit(G, u):
       DFS-Visit(G, v)
   color[u] = Black
 ```
+
+## Breadth First Search
+
+```
+BFS(Q, s):
+  for each u in G.V:
+    d[u] = inf
+    color[u] = White
+    p[u] = Nil
+  d[s] = 0
+  color[s] = Gray
+  Q = empty
+  Enqueue(Q, s)
+  while Q not empty:
+    u = Dequeue(Q)
+    for v in G.Adj[u]:
+      if color[v] == White:
+        d[v] = d[u] + 1
+        p[v] = u
+        color[v] = Gray
+        Enqueue(Q, v)
+    color[u] = Black
+```
