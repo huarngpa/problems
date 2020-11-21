@@ -1,5 +1,10 @@
 import java.util.*;
 
+/**
+ * Construct Binary Tree from Preorder and Inorder Traversal
+ * 
+ * Given preorder and inorder traversal of a tree, construct the binary tree.
+ */
 public class ConstructBinaryTreeSolution {
 
   public static class TreeNode {
