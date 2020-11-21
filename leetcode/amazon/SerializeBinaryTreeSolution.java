@@ -1,4 +1,4 @@
-class SerializeBinaryTree {
+class SerializeBinaryTreeSolution {
 
   public static class TreeNode {
     int val;
