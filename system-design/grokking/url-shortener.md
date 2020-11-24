@@ -28,8 +28,8 @@ Other requirements:
 
 ### Scale
 
-- System will be read heavy 100:1 ratio between read and writes
-- 500M URL shortening requests per month
+- System will be **read** heavy 100:1 ratio between read and writes
+- **500M** URL shortening requests per month
 
 500M x 100 reads = 50,000M or 50B reads
 
@@ -46,8 +46,12 @@ Schema:
 - id
 - redirect_url
 - expiration
+- creation
+- userId
 
-Let's assume 500 bytes for ease of calculations
+Let's assume 500 bytes for ease of calculations.
+
+18B x 500 = 9,000B bytes = 9TB of storage.
 
 ### Bandwidth estimates
 
@@ -59,6 +63,46 @@ Let's assume 500 bytes for ease of calculations
 
 It's good to think about this for caching.
 
-We can follow 80-20 rule here assuming that 20% of URLs generate 80% of the traffic
+We can follow 80-20 rule here assuming that 20% of URLs generate 80% of the traffic, we can assume:
+
+9TB x 20% / 12 = 150GB of cache memory.
 
 ## 3 System Interface Definition
+
+- POST /api/shortener
+  - apiKey
+  - originalUrl
+  - expiresAt
+  - email
+  - customAlias (optional)
+- DELETE /api/shortener
+  - apiKey
+  - id
+  - email
+- GET /:id
+
+Make sure to mention that we can prevent abuse by limiting number of created URLs
+
+## 4 Database Design
+
+NoSQL is the better choice here
+
+## 5 High-Level Design
+
+- Load balancing
+- Consider breaking up the key generation as a separate service
+- Clean-up service to remove expired links
+- Caching
+  - Between app and database
+- NoSQL
+- Telemetry
+  - Possibly lambda architecture
+  - Datadog
+
+## X Follow-Ups
+
+- Data partitioning
+  - Range-based partitioning (ie. As, Bs, etc.)
+    - Not great, unbalanced load
+  - Hash-based partitioning (see consistent hashing)
+- Permissioning? Think of ACLs or cgroups in Linux, can you implement something similar
