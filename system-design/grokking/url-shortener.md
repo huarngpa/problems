@@ -1,4 +1,4 @@
-# Designing a Service like TinyURL
+# Design TinyURL
 
 ## 1 Clarify Requirements
 
