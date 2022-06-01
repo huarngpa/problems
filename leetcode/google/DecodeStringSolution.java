@@ -1,7 +1,15 @@
 import java.util.Deque;
 import java.util.LinkedList;
 
+/**
+ * https://leetcode.com/problems/decode-string/
+ */
 public class DecodeStringSolution {
+
+  /*
+   * The trick to this problem is that you need a special data structure (deque)
+   * and recursion in order to elegantly solve it.
+   */
   public String decodeString(String s) {
     Deque<Character> deque = new LinkedList<>();
     for (char c : s.toCharArray()) {
