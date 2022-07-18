@@ -58,3 +58,9 @@ BFS(Q, s):
         Enqueue(Q, v)
     color[u] = Black
 ```
+
+## Divide and Conquer
+
+The main idea here is to split the main problem into two smaller components. Then solving things recursively, bring the results together to solve the bigger problem.
+
+Merge sort and quicksort are good examples of these classes of problems.

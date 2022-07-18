@@ -23,6 +23,7 @@ public class MonotonicStackSolution {
     // A "monotonic" property is maintained and this has useful implications. For
     // instance, in the area of a histogram problem we need to know where the
     // previous smaller number/index exists. What other problems might a monotonic
-    // stack come in handy?
+    // stack come in handy? Also keep in mind that you're not limited to a stack, a
+    // Deque can also be used as the underlying data structure
   }
 }
